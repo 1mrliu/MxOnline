@@ -16,7 +16,7 @@ from django.contrib.auth.models import  AbstractUser
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name='昵称', default="")
     birday = models.DateField(verbose_name="生日", null=True)
-    gender = models.CharField(max_length=5, choices=(('male','男'),('female','nv')),default="female")
+    gender = models.CharField(max_length=7, choices=(('male','男'),('female','nv')),default="female")
     address = models.CharField(max_length=100, default="")
     mobile = models.CharField(max_length=11, null=True)
     image = models.ImageField(upload_to="image/%Y/%m", default="iamge/default.png", max_length=100)
