@@ -32,12 +32,17 @@ class UserProfile(AbstractUser):
 class EmailVerifyRecord(models.Model):
     code = models.CharField(max_length=20, verbose_name="验证码")
     email = models.EmailField(max_length=50, verbose_name="邮箱")
-    sen_type = models.CharField(choices=(("register", "注册"),("forget","找回密码")), max_length=10)
-    sen_time = models.DateTimeField(default=datetime.now)# 去掉括号的原因是可以让时间根据class生成的时间来进行计算
+    sen_type = models.CharField(choices=(("register", "注册"),("forget","找回密码")), max_length=10, verbose_name='验证码类型')
+    sen_time = models.DateTimeField(default=datetime.now, verbose_name='发送时间')# 去掉括号的原因是可以让时间根据class生成的时间来进行计算
 
     class Meta:
         verbose_name = "邮箱验证码"
         verbose_name_plural = verbose_name
+        #verbose_name_plural表示的是复数形式，会在后边加s
+
+    # 显示email的名字
+    def __unicode__(self):
+        return  '{0}({1})'.format(self.code, self.email)
 
 #轮播图
 class Banner(models.Model):

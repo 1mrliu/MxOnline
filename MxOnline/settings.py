@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for MxOnline project.
 
@@ -9,13 +10,14 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-# -*- coding: utf-8 -*-
+
 import os
 import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))# deal runserver problem
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))#  deal runserver problem
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,6 +34,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTHENTICATION_BACKENDS = [
+    'users.views.CustomBackend',
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     'operation',
     'xadmin',
     'crispy_forms',
+    'captcha',# 验证码
 ]
 AUTH_USER_MODEL = "users.UserProfile"
 
@@ -133,3 +140,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# static 地址路径的存放配置
+STATICFILES_DIRS = [
+    os.path.join (BASE_DIR, 'static')
+]
+
+
