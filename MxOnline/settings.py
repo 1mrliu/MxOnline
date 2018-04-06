@@ -144,5 +144,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join (BASE_DIR, 'static')
 ]
+# 服务器发送注册邮件地址
+EMAIL_HOST ="smtp-mail.outlook.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "ld815626@hotmail.com"
+EMAIL_HOST_PASSWORD = "STARTTLS"
+EMAIL_USE_TLS = False
+EMAIL_FROM = "ld815626@hotmail.com"
 
 
